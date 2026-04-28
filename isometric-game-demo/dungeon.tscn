@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://decorations/internal_shadow.tscn" id="14"]
 [ext_resource type="Texture2D" uid="uid://dahfdmuvra5we" path="res://decorations/drape_1.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://dmqbp4e43sm1t" path="res://decorations/paw_prints.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://b6sjbdj350qkj" path="res://decorations/coin_pile.png" id="17_v3ata"]
 [ext_resource type="Texture2D" uid="uid://d3j0qnogdctw4" path="res://decorations/crow_sleep.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://dami7imxtk2iq" path="res://decorations/crow_looking.png" id="19"]
 
@@ -993,7 +994,7 @@ occluder = SubResource("18")
 
 [node name="PointLight2D" type="PointLight2D" parent="Ambient" unique_id=738496911]
 light_mask = 2
-position = Vector2(175, 99)
+position = Vector2(124, 169)
 scale = Vector2(0.908, 0.84)
 color = Color(0.709804, 0.388235, 0.313726, 1)
 shadow_enabled = true
@@ -1595,6 +1596,26 @@ texture = ExtResource("13")
 polygon = PackedVector2Array(414.316, 138, -124.632, 59, 154.947, 16, 683.79, 92)
 uv = PackedVector2Array(-30.3157, -2, 272.842, -2, 273, 299, -37.0526, 297)
 
+[node name="CoinPile" type="Sprite2D" parent="Ambient" unique_id=496936501]
+position = Vector2(287, 164)
+texture = ExtResource("17_v3ata")
+
+[node name="Drape1" type="Sprite2D" parent="Ambient" unique_id=1600887205]
+position = Vector2(227, 280)
+texture = ExtResource("15")
+
+[node name="Rug1" type="Sprite2D" parent="Ambient" unique_id=4576539]
+position = Vector2(712, 93)
+texture = ExtResource("5")
+
+[node name="Rug2" type="Sprite2D" parent="Ambient" unique_id=607169352]
+position = Vector2(170, 195)
+texture = ExtResource("5")
+
+[node name="Rug3" type="Sprite2D" parent="Ambient" unique_id=876274282]
+position = Vector2(345, 289)
+texture = ExtResource("5")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=454562828]
 show_behind_parent = true
 light_mask = 0
@@ -1641,3 +1662,18 @@ sprite_frames = SubResource("91")
 animation = &"looking"
 autoplay = "looking"
 frame = 7
+
+[node name="Rug1" type="Sprite2D" parent="." unique_id=870442354]
+position = Vector2(542, 168)
+texture = ExtResource("5")
+
+[node name="WallSkull" type="Sprite2D" parent="." unique_id=1812733317]
+position = Vector2(932, 97)
+texture = ExtResource("2")
+
+[node name="bone_pile" parent="." unique_id=1326359910 instance=ExtResource("11")]
+position = Vector2(749, 429)
+
+[node name="Banner" type="Sprite2D" parent="." unique_id=1663994418]
+position = Vector2(622, 384)
+texture = ExtResource("6")
