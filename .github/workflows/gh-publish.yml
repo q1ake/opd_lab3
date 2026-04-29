@@ -1,0 +1,49 @@
+name: Godot CI Release
+
+on:
+  push:
+    branches: [ main ]   # или master, если ваша основная ветка так называется
+
+env:
+  GODOT_VERSION: "4.6"   # замените на вашу версию Godot
+
+jobs:
+  export-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    name: Export and Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Godot Export
+        id: export
+        uses: firebelley/godot-export@v7.0.0
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          relative_project_path: ./
+          export_format: "Windows Desktop"
+          export_path: "build/windows"
+          cache: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: build/windows/*
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/windows/*"
+          token: ${{ secrets.GH_TOKEN }}
+          tag: "v${{ github.run_number }}"
+          name: "Release v${{ github.run_number }}"
+          body: "Автоматическая сборка из коммита ${{ github.sha }}"
+          draft: false
+          prerelease: false
+          allowUpdates: true
